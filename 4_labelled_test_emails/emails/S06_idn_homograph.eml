@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=xn--pypal-4ve.com; dkim=pass header.d=xn--pypal-4ve.com; dmarc=pass header.from=xn--pypal-4ve.com
+Received: from mx.xn--pypal-4ve.com (mx.xn--pypal-4ve.com [45.137.22.15])
+	by mx1.uni-example.edu with ESMTPS id 35856196
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <security@xn--pypal-4ve.com>
+From: "PayPal" <security@xn--pypal-4ve.com>
+To: <student@uni-example.edu>
+Subject: Verify your identity
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <707213889216.816252@xn--pypal-4ve.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

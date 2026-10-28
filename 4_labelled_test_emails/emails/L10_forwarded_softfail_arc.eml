@@ -1,0 +1,25 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=softfail smtp.mailfrom=research-inst.org; dkim=pass header.d=research-inst.org; dmarc=pass header.from=research-inst.org; arc=pass
+ARC-Seal: i=1; a=rsa-sha256; cv=none; d=forwarder.example; s=arc; b=AbC=
+ARC-Authentication-Results: i=1; forwarder.example; spf=pass smtp.mailfrom=research-inst.org; dkim=pass header.d=research-inst.org
+Received: from out.forwarder.example (out.forwarder.example [89.187.162.1])
+	by mx1.uni-example.edu with ESMTPS id 08405272
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Received: from smtp.research-inst.org (smtp.research-inst.org [193.60.10.4])
+	by mx.forwarder.example with ESMTPS id 68818253
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:29:00 +0000
+Return-Path: <prof.rahman@research-inst.org>
+From: "Dr. Rahman" <prof.rahman@research-inst.org>
+To: <student@uni-example.edu>
+Subject: Re: thesis draft
+Date: Mon, 14 Sep 2026 09:28:00 +0000
+Message-ID: <84381744859.146226@research-inst.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

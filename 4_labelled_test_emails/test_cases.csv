@@ -1,0 +1,42 @@
+filename,label,category,split,description
+L01_personal_gmail.eml,legitimate,normal,tune,"Personal Gmail message, all authentication aligned and passing."
+L02_github_notification.eml,legitimate,normal,test,GitHub notification sent from GitHub's own infrastructure.
+L03_internal_department.eml,legitimate,normal,tune,Department announcement relayed inside the university.
+L04_bank_statement.eml,legitimate,normal,test,Bank e-statement notice with aligned DKIM and SPF.
+L05_esp_newsletter.eml,legitimate,normal,tune,"Retail newsletter sent through an ESP: Return-Path on the ESP domain, DKIM aligned with the brand."
+L06_helpdesk_ticket.eml,legitimate,normal,test,Vendor support ticket; Reply-To points at the vendor's hosted helpdesk domain.
+L07_mailing_list_rewritten.eml,legitimate,mailing-list,tune,Mailing list that rewrites From to its own domain (DMARC mitigation).
+L08_mailing_list_dkim_broken.eml,legitimate,mailing-list,test,"Mailing list that keeps the author's From and adds a footer: DKIM and DMARC fail for the author's domain, ARC passes."
+L09_forwarded_spf_fail.eml,legitimate,forwarded,tune,"Alumni forwarding service: SPF fails at the final hop, DKIM survives and aligns."
+L10_forwarded_softfail_arc.eml,legitimate,forwarded,test,Forwarded via a personal domain with SPF softfail; ARC records the original pass.
+L11_forwarded_everything_broken.eml,legitimate,forwarded,tune,"Forwarder that rewrites the body: SPF, DKIM and DMARC all fail; only ARC shows the original passes."
+L12_microsoft365_style.eml,legitimate,normal,tune,Message whose top Authentication-Results lacks an authserv-id (Microsoft 365 style).
+L13_calendar_invite.eml,legitimate,normal,test,"Colleague's meeting invite, all aligned."
+L14_amazon_ses.eml,legitimate,normal,tune,Genuine Amazon shipping notice via amazonses.com envelope sender.
+L15_paypal_genuine.eml,legitimate,normal,test,Genuine PayPal receipt with display name 'PayPal'.
+L16_small_business_no_dmarc.eml,legitimate,normal,tune,Small business without DKIM or DMARC; SPF passes.
+L17_queued_delivery.eml,legitimate,normal,test,Legitimate message delayed 26 hours in a queue.
+L18_custom_domain_via_gmail.eml,legitimate,normal,tune,Custom domain hosted on Google Workspace; Message-ID on mail.gmail.com.
+L19_clock_skew.eml,legitimate,normal,test,Legitimate message whose internal relay clock is 3 minutes fast (within tolerance).
+L20_autoreply_null_sender.eml,legitimate,normal,tune,Out-of-office auto-reply with a null Return-Path.
+L21_internal_scanner.eml,legitimate,malformed,tune,"Old network scanner on the internal network: no Message-ID, no auth results."
+S01_lookalike_digit.eml,suspicious,lookalike,tune,paypa1.com look-alike; attacker owns the domain so SPF/DKIM/DMARC pass.
+S02_displayname_brand_freemail.eml,suspicious,sender-spoofing,tune,'PayPal Security' display name on a Gmail account.
+S03_exact_domain_spoof.eml,suspicious,auth-failure,tune,From forges the university's own domain from an external server.
+S04_bec_freemail_replyto.eml,suspicious,sender-spoofing,test,"Spoofed partner address with Reply-To on Gmail; SPF softfail, DMARC fail (p=none)."
+S05_bec_lookalike_replyto.eml,suspicious,lookalike,test,"Real supplier address, but Reply-To uses a near-identical domain."
+S06_idn_homograph.eml,suspicious,lookalike,tune,Cyrillic 'а' in pаypal.com (punycode xn--pypal-4ve.com).
+S07_brand_embedded.eml,suspicious,lookalike,test,"paypal-account-verify.com, a newly registered brand-embedding domain."
+S08_brand_in_subdomain.eml,suspicious,lookalike,tune,microsoft.com used as a sub-domain of secure-login-portal.net.
+S09_displayname_address.eml,suspicious,sender-spoofing,tune,Display name contains support@apple.com; real address on another domain.
+S10_duplicate_from.eml,suspicious,malformed,tune,Two From headers so different clients show different senders.
+S11_forged_auth_results.eml,suspicious,auth-failure,test,Attacker inserted a fake 'mx.google.com' Authentication-Results claiming passes.
+S12_forged_received_chain.eml,suspicious,route,tune,Fabricated earlier Received hops with impossible timestamps; Date after delivery.
+S13_spf_dmarc_fail_bank.eml,suspicious,auth-failure,tune,"Bank spoof: SPF fail, DMARC fail, Return-Path on unrelated domain."
+S14_dkim_fail_courier.eml,suspicious,auth-failure,test,Courier spoof with a broken (forged) DKIM signature and DMARC fail.
+S15_unaligned_no_dmarc_recorded.eml,suspicious,auth-failure,tune,SPF and DKIM pass only for a bulk sender; From claims netflix.com; receiver recorded no DMARC result.
+S16_typosquat.eml,suspicious,lookalike,test,dropboxx.com typosquat sharing a 'document'.
+S17_handcrafted_malformed.eml,suspicious,malformed,test,"Hand-crafted message: no Date, malformed Message-ID, no auth results, no route."
+S18_compromised_account.eml,suspicious,compromised,tune,Phishing from a genuinely compromised partner account: every header check passes (expected to be missed by header analysis).
+S19_org_lookalike.eml,suspicious,lookalike,tune,Look-alike of the university's own domain (uni-examp1e.edu).
+S20_hostile_encoded.eml,suspicious,malformed,tune,"Hostile header content (encoded control characters, very long subject) on a spoof."

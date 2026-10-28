@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=bulk-sender-xyz.com; dkim=pass header.d=bulk-sender-xyz.com
+Received: from out.bulk-sender-xyz.com (out.bulk-sender-xyz.com [45.95.147.20])
+	by mx1.uni-example.edu with ESMTPS id 37507130
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <bounce@bulk-sender-xyz.com>
+From: "Netflix" <info@netflix.com>
+To: <student@uni-example.edu>
+Subject: Payment declined - update details
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <804908443375.178112@netflix.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

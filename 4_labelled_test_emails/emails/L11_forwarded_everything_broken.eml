@@ -1,0 +1,26 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=fail smtp.mailfrom=partner-company.com; dkim=fail (signature verification failed) header.d=partner-company.com; dmarc=fail (p=QUARANTINE) header.from=partner-company.com; arc=pass
+ARC-Seal: i=1; a=rsa-sha256; cv=none; d=forwarder.example; s=arc; b=AbC=
+ARC-Authentication-Results: i=1; forwarder.example; spf=pass smtp.mailfrom=partner-company.com; dkim=pass header.d=partner-company.com; dmarc=pass header.from=partner-company.com
+Received: from out.forwarder.example (out.forwarder.example [89.187.162.1])
+	by mx1.uni-example.edu with ESMTPS id 08405272
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Received: from mx.partner-company.com (mx.partner-company.com [62.24.135.9])
+	by mx.forwarder.example with ESMTPS id 16789770
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:29:00 +0000
+Return-Path: <hr@partner-company.com>
+From: "Partner HR" <hr@partner-company.com>
+To: <student@uni-example.edu>
+Subject: Internship offer letter
+Date: Mon, 14 Sep 2026 09:28:00 +0000
+Message-ID: <756604006206.453120@partner-company.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Resent-From: <careers-forward@forwarder.example>
+
+Hello,
+
+Please see the message below.
+
+Regards

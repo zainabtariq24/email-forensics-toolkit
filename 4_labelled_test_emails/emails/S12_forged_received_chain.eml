@@ -1,0 +1,23 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=relay-x.net; dkim=none; dmarc=fail (p=QUARANTINE) header.from=uni-example.edu
+Received: from smtp.relay-x.net (smtp.relay-x.net [141.98.10.60])
+	by mx1.uni-example.edu with ESMTPS id 95567110
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Received: from mail.uni-example.edu (mail.uni-example.edu [10.20.1.1])
+	by smtp.uni-example.edu.relay-x.net with ESMTPS id 42119930
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 12:30:00 +0000
+Return-Path: <hr@relay-x.net>
+From: "HR Department" <hr@uni-example.edu>
+To: <student@uni-example.edu>
+Subject: Salary revision letter
+Date: Mon, 14 Sep 2026 16:30:00 +0000
+Message-ID: <875880618759.890602@uni-example.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

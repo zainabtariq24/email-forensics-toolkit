@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=partner-university.edu; dkim=pass header.d=partner-university.edu; dmarc=pass header.from=partner-university.edu
+Received: from smtp.partner-university.edu (smtp.partner-university.edu [128.2.42.10])
+	by mx1.uni-example.edu with ESMTPS id 96892316
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <m.iqbal@partner-university.edu>
+From: "Dr. M. Iqbal" <m.iqbal@partner-university.edu>
+To: <student@uni-example.edu>
+Subject: Shared folder: research grant documents
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <400097052625.862733@partner-university.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

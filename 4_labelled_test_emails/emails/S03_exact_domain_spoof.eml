@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=fail smtp.mailfrom=uni-example.edu; dkim=none; dmarc=fail (p=REJECT) header.from=uni-example.edu
+Received: from vps-338.hostingco.net (vps-338.hostingco.net [185.220.101.47])
+	by mx1.uni-example.edu with ESMTPS id 62468347
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <vc.office@uni-example.edu>
+From: "Vice Chancellor" <vc.office@uni-example.edu>
+To: <student@uni-example.edu>
+Subject: Urgent: gift card request
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <994654510881.354620@uni-example.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

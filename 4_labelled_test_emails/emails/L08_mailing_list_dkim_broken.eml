@@ -1,0 +1,27 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=sec-list.org; dkim=fail (body hash did not verify) header.d=author-corp.com; dmarc=fail (p=NONE) header.from=author-corp.com; arc=pass
+ARC-Seal: i=1; a=rsa-sha256; cv=none; d=forwarder.example; s=arc; b=AbC=
+ARC-Authentication-Results: i=1; forwarder.example; spf=pass smtp.mailfrom=author-corp.com; dkim=pass header.d=author-corp.com; dmarc=pass header.from=author-corp.com
+Received: from lists.sec-list.org (lists.sec-list.org [128.30.9.17])
+	by mx1.uni-example.edu with ESMTPS id 10452955
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Received: from mail.author-corp.com (mail.author-corp.com [81.2.69.160])
+	by lists.sec-list.org with ESMTPS id 13823593
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:28:00 +0000
+Return-Path: <sec-list-bounces@sec-list.org>
+From: "Sara Malik" <sara.malik@author-corp.com>
+To: <student@uni-example.edu>
+Subject: [sec-list] Incident write-up
+Date: Mon, 14 Sep 2026 09:27:00 +0000
+Message-ID: <555504520153.689700@author-corp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+List-Id: <sec-list.sec-list.org>
+Precedence: list
+
+Hello,
+
+Please see the message below.
+
+Regards

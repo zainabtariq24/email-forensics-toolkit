@@ -1,0 +1,21 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=softfail smtp.mailfrom=cheap-smtp.biz; dkim=none; dmarc=fail (p=NONE) header.from=partner-corp.com
+Received: from mail.cheap-smtp.biz (mail.cheap-smtp.biz [91.215.85.12])
+	by mx1.uni-example.edu with ESMTPS id 51333156
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <bounce@cheap-smtp.biz>
+From: "Partner Corp Accounts" <accounts@partner-corp.com>
+To: <student@uni-example.edu>
+Reply-To: <partnercorp.payments@gmail.com>
+Subject: Updated bank details for invoice 4471
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <379185413825.964297@partner-corp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

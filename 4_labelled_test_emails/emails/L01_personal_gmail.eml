@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=ayesha.khan@gmail.com; dkim=pass header.d=gmail.com header.s=20230601; dmarc=pass (p=NONE) header.from=gmail.com
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com [209.85.220.41])
+	by mx1.uni-example.edu with ESMTPS id 27050548
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <ayesha.khan@gmail.com>
+From: "Ayesha Khan" <ayesha.khan@gmail.com>
+To: <student@uni-example.edu>
+Subject: Notes from today's lab
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <CAF3x9k2Lm@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

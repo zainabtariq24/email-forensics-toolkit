@@ -1,0 +1,21 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=bounces.github.com; dkim=pass header.d=github.com header.s=pf2023; dmarc=pass (p=REJECT) header.from=github.com
+Received: from out-21.smtp.github.com (out-21.smtp.github.com [192.30.252.204])
+	by mx1.uni-example.edu with ESMTPS id 99065024
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <noreply@bounces.github.com>
+From: "GitHub" <notifications@github.com>
+To: <student@uni-example.edu>
+Subject: [uni-example/df-lab] New issue opened (#42)
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <846691740576.81999@github.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+List-Unsubscribe: <mailto:unsub@reply.github.com>
+
+Hello,
+
+Please see the message below.
+
+Regards

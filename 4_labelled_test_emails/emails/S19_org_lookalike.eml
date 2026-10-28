@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=uni-examp1e.edu; dkim=pass header.d=uni-examp1e.edu; dmarc=none header.from=uni-examp1e.edu
+Received: from mail.uni-examp1e.edu (mail.uni-examp1e.edu [45.88.67.3])
+	by mx1.uni-example.edu with ESMTPS id 25313262
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <it-helpdesk@uni-examp1e.edu>
+From: "IT Helpdesk" <it-helpdesk@uni-examp1e.edu>
+To: <student@uni-example.edu>
+Subject: Re-validate your student account
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <123165132329.53752@uni-examp1e.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

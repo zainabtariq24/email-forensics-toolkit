@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=mailer-random.ru; dkim=none; dmarc=none header.from=mailer-random.ru
+Received: from mailer-random.ru (mailer-random.ru [95.163.22.4])
+	by mx1.uni-example.edu with ESMTPS id 69910691
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <xk2@mailer-random.ru>
+From: "support@apple.com" <xk2@mailer-random.ru>
+To: <student@uni-example.edu>
+Subject: Your Apple ID was locked
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <80167633007.133905@mailer-random.ru>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

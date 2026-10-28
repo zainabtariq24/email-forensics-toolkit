@@ -1,0 +1,21 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=helpdesk-cloud.com; dkim=pass header.d=softvendor.com; dmarc=pass header.from=softvendor.com
+Received: from mail.helpdesk-cloud.com (mail.helpdesk-cloud.com [52.4.18.9])
+	by mx1.uni-example.edu with ESMTPS id 60287190
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <bounce@helpdesk-cloud.com>
+From: "SoftVendor Support" <support@softvendor.com>
+To: <student@uni-example.edu>
+Reply-To: <support+id8812@softvendor.helpdesk-cloud.com>
+Subject: [Ticket #8812] Licence activation
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <706179256660.642386@softvendor.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

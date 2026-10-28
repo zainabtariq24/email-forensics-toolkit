@@ -1,0 +1,23 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=uni-example.edu; dkim=pass header.d=uni-example.edu; dmarc=pass header.from=uni-example.edu
+Received: from relay.uni-example.edu (relay.uni-example.edu [10.20.0.3])
+	by mx1.uni-example.edu with ESMTPS id 83835262
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Received: from ils.uni-example.edu (ils.uni-example.edu [10.20.9.2])
+	by relay.uni-example.edu with ESMTPS id 60364478
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:33:00 +0000
+Return-Path: <library@uni-example.edu>
+From: "University Library" <library@uni-example.edu>
+To: <student@uni-example.edu>
+Subject: Book due reminder
+Date: Mon, 14 Sep 2026 09:32:00 +0000
+Message-ID: <195019052533.928368@uni-example.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

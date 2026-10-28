@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=fail smtp.mailfrom=parcel-notify.click; dkim=fail (signature did not verify) header.d=dhl.com; dmarc=fail (p=REJECT) header.from=dhl.com
+Received: from smtp.parcel-notify.click (smtp.parcel-notify.click [5.181.86.10])
+	by mx1.uni-example.edu with ESMTPS id 08635615
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <n@parcel-notify.click>
+From: "DHL Express" <delivery@dhl.com>
+To: <student@uni-example.edu>
+Subject: Parcel held at customs
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <183195258945.265100@dhl.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

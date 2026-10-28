@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=printshop-lahore.com; dkim=none; dmarc=none header.from=printshop-lahore.com
+Received: from mail.printshop-lahore.com (mail.printshop-lahore.com [203.99.48.21])
+	by mx1.uni-example.edu with ESMTPS id 80534626
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <orders@printshop-lahore.com>
+From: "Print Shop" <orders@printshop-lahore.com>
+To: <student@uni-example.edu>
+Subject: Your order is ready for pickup
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <124270469338.465849@printshop-lahore.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=paypal-account-verify.com; dkim=pass header.d=paypal-account-verify.com; dmarc=none
+Received: from smtp.paypal-account-verify.com (smtp.paypal-account-verify.com [45.141.84.2])
+	by mx1.uni-example.edu with ESMTPS id 96503641
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <no-reply@paypal-account-verify.com>
+From: "PayPal Service" <no-reply@paypal-account-verify.com>
+To: <student@uni-example.edu>
+Subject: Action required
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <426347141842.960501@paypal-account-verify.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

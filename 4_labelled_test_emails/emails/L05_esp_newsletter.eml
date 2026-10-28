@@ -1,0 +1,22 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=em.esp-mailer.net; dkim=pass header.d=shop-example.com; dkim=pass header.d=esp-mailer.net; dmarc=pass (p=QUARANTINE) header.from=shop-example.com
+Received: from o1.em.esp-mailer.net (o1.em.esp-mailer.net [167.89.12.44])
+	by mx1.uni-example.edu with ESMTPS id 91552689
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <bounce-77@em.esp-mailer.net>
+From: "Shop Example" <news@shop-example.com>
+To: <student@uni-example.edu>
+Subject: Autumn sale starts now
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <463646197672.565075@shop-example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+List-Unsubscribe: <https://shop-example.com/u/77>
+Feedback-ID: 77:esp
+
+Hello,
+
+Please see the message below.
+
+Regards

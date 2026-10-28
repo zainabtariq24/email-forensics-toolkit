@@ -1,0 +1,21 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=bulk-host.xyz; dkim=none; dmarc=fail (p=REJECT) header.from=uni-example.edu
+Received: from smtp.bulk-host.xyz (smtp.bulk-host.xyz [185.81.157.3])
+	by mx1.uni-example.edu with ESMTPS id 21273619
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <x@bulk-host.xyz>
+From: "IT Support" <it-support@uni-example.edu>
+To: <student@uni-example.edu>
+Subject: Mailbox quota exceeded
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <456633006182.480307@uni-example.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+From: "IT Support" <alt-it-support@uni-example.edu>
+
+Hello,
+
+Please see the message below.
+
+Regards

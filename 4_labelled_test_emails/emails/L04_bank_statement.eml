@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=example-bank.com; dkim=pass header.d=example-bank.com; dmarc=pass (p=REJECT) header.from=example-bank.com
+Received: from mta2.example-bank.com (mta2.example-bank.com [154.57.33.12])
+	by mx1.uni-example.edu with ESMTPS id 96306069
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <estatements@example-bank.com>
+From: "Example Bank" <estatements@example-bank.com>
+To: <student@uni-example.edu>
+Subject: Your September statement is ready
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <522540237851.745564@example-bank.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

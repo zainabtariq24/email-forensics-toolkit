@@ -1,0 +1,21 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=fail smtp.mailfrom=vps-cheap.top; dkim=none; dmarc=fail (p=REJECT) header.from=example-bank.com
+Authentication-Results: mx.google.com; spf=pass smtp.mailfrom=example-bank.com; dkim=pass header.d=example-bank.com; dmarc=pass header.from=example-bank.com
+Received: from srv1.vps-cheap.top (srv1.vps-cheap.top [176.97.210.4])
+	by mx1.uni-example.edu with ESMTPS id 90462210
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <bounce@vps-cheap.top>
+From: "Example Bank" <alerts@example-bank.com>
+To: <student@uni-example.edu>
+Subject: Confirm your card
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <837312943559.581161@example-bank.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

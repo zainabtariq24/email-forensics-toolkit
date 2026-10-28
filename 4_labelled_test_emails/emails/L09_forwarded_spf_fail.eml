@@ -1,0 +1,24 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=fail smtp.mailfrom=outlook.com; dkim=pass header.d=outlook.com; dmarc=pass header.from=outlook.com
+Received: from relay.alumni-forward.org (relay.alumni-forward.org [64.62.200.3])
+	by mx1.uni-example.edu with ESMTPS id 06617277
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.98])
+	by mx.alumni-forward.org with ESMTPS id 17153437
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:29:00 +0000
+Return-Path: <omar.farooq@outlook.com>
+From: "Omar Farooq" <omar.farooq@outlook.com>
+To: <student@uni-example.edu>
+Subject: Reunion photos
+Date: Mon, 14 Sep 2026 09:28:00 +0000
+Message-ID: <811965672782.299624@outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+X-Forwarded-To: student@uni-example.edu
+
+Hello,
+
+Please see the message below.
+
+Regards

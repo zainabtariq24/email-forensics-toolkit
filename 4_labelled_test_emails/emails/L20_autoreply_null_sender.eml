@@ -1,0 +1,21 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=none smtp.helo=staffmail.uni-example.edu; dkim=pass header.d=uni-example.edu; dmarc=pass header.from=uni-example.edu
+Received: from staffmail.uni-example.edu (staffmail.uni-example.edu [10.20.4.7])
+	by mx1.uni-example.edu with ESMTPS id 85844037
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <>
+From: "Dean" <dean@uni-example.edu>
+To: <student@uni-example.edu>
+Subject: Automatic reply: Request
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <759794649596.470002@uni-example.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Auto-Submitted: auto-replied
+
+Hello,
+
+Please see the message below.
+
+Regards

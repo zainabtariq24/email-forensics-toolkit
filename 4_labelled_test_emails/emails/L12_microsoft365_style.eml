@@ -1,0 +1,19 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: spf=pass (sender IP is 40.107.22.98) smtp.mailfrom=college-example.ac.uk; dkim=pass (signature was verified) header.d=college-example.ac.uk;dmarc=pass action=none header.from=college-example.ac.uk;compauth=pass reason=100
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (EUR05-AM6-obe.outbound.protection.outlook.com [40.107.22.98])
+	by mx1.uni-example.edu with ESMTPS id 10591054
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <registrar@college-example.ac.uk>
+From: "Registrar" <registrar@college-example.ac.uk>
+To: <student@uni-example.edu>
+Subject: Exchange programme confirmation
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <732755767148.803825@college-example.ac.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards

@@ -1,0 +1,24 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=lists.uni-example.org; dkim=pass header.d=lists.uni-example.org; dmarc=pass header.from=lists.uni-example.org
+Received: from lists.uni-example.org (lists.uni-example.org [128.30.2.5])
+	by mx1.uni-example.edu with ESMTPS id 52618077
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <df-discuss-bounces@lists.uni-example.org>
+From: "Bilal Ahmed via df-discuss" <df-discuss@lists.uni-example.org>
+To: <student@uni-example.edu>
+Reply-To: <bilal.ahmed@forensics-lab.org>
+Subject: [df-discuss] Volatility plugin question
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <52041827367.394992@lists.uni-example.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+List-Id: <df-discuss.lists.uni-example.org>
+List-Unsubscribe: <mailto:df-discuss-leave@lists.uni-example.org>
+Precedence: list
+
+Hello,
+
+Please see the message below.
+
+Regards

@@ -1,0 +1,20 @@
+Received: from mx1.uni-example.edu (mx1.uni-example.edu [10.20.0.11]) by mailbox01.uni-example.edu with LMTP id 8F2A1C; Mon, 14 Sep 2026 09:30:12 +0000
+Authentication-Results: mx1.uni-example.edu;
+	spf=pass smtp.mailfrom=paypal.com; dkim=pass header.d=paypal.com; dmarc=pass (p=REJECT) header.from=paypal.com
+Received: from mx0.slc.paypal.com (mx0.slc.paypal.com [173.0.84.226])
+	by mx1.uni-example.edu with ESMTPS id 03159787
+	for <student@uni-example.edu>; Mon, 14 Sep 2026 09:30:00 +0000
+Return-Path: <service@paypal.com>
+From: "PayPal" <service@paypal.com>
+To: <student@uni-example.edu>
+Subject: Receipt for your payment
+Date: Mon, 14 Sep 2026 09:29:00 +0000
+Message-ID: <911521373261.593164@paypal.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Please see the message below.
+
+Regards
