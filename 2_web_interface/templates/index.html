@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Digital forensics · email header analysis</span>
+    <h1>Investigate a suspicious email in seconds.</h1>
+    <p class="lead">Upload an email to reconstruct its delivery route, check SPF, DKIM and DMARC,
+      detect spoofing and look-alike domains, and get a hashed, report-ready analysis.</p>
+  </div>
+  <ol class="pipeline" aria-label="Analysis pipeline">
+    <li><span class="step-num">1</span><div><b>Preserve</b><small>SHA-256 + read-only original</small></div></li>
+    <li><span class="step-num">2</span><div><b>Parse &amp; trace</b><small>Headers, route, trust boundary</small></div></li>
+    <li><span class="step-num">3</span><div><b>Detect</b><small>Authentication, spoofing, look-alikes</small></div></li>
+    <li><span class="step-num">4</span><div><b>Report</b><small>Explainable score, PDF &amp; JSON</small></div></li>
+  </ol>
+</section>
+
+<div class="layout-2">
+  <section class="card card-main">
+    <form method="post" action="{{ url_for('analyze') }}" enctype="multipart/form-data" id="analyze-form">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab is-active" role="tab" data-tab="upload" aria-selected="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+          Upload .eml</button>
+        <button type="button" class="tab" role="tab" data-tab="paste" aria-selected="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M8 5H6a1 1 0 00-1 1v14a1 1 0 001 1h12a1 1 0 001-1V6a1 1 0 00-1-1h-2"/></svg>
+          Paste headers</button>
+        {% if samples %}
+        <button type="button" class="tab" role="tab" data-tab="sample" aria-selected="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>
+          Sample emails</button>
+        {% endif %}
+      </div>
+
+      <div class="tab-panel is-active" data-panel="upload">
+        <label class="dropzone" id="dropzone">
+          <input type="file" name="eml_file" id="eml-file" accept=".eml,.txt,message/rfc822">
+          <span class="dz-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 7l9 6 9-6M3 6h18v13H3z"/></svg>
+          </span>
+          <span class="dz-title" id="dz-title">Drop an .eml file here</span>
+          <span class="dz-sub" id="dz-sub">or click to browse · up to 10 MiB</span>
+        </label>
+        <p class="hint">Gmail: open the email → ⋮ → <b>Download message</b>. Outlook: drag the email to your desktop.</p>
+      </div>
+
+      <div class="tab-panel" data-panel="paste">
+        <textarea name="raw_headers" rows="13" spellcheck="false" aria-label="Raw email headers"
+          placeholder="Received: from mail.example.com (mail.example.com [203.0.113.5])&#10;Authentication-Results: mx.google.com; spf=pass ...&#10;From: &quot;Sender&quot; &lt;sender@example.com&gt;&#10;..."></textarea>
+        <p class="hint">Paste the <b>full original headers</b>: in Gmail use ⋮ → <b>Show original</b> → <b>Copy to clipboard</b>.
+          The small sender-details dropdown is not enough.</p>
+      </div>
+
+      {% if samples %}
+      <div class="tab-panel" data-panel="sample">
+        <label class="field">
+          <span class="field-label">Labelled test email from the evaluation dataset</span>
+          <select name="sample">
+            <option value="">Choose a sample…</option>
+            <optgroup label="Legitimate">
+              {% for s in samples if s.startswith('L') %}<option value="{{ s }}">{{ s[:-4]|replace('_', ' ') }}</option>{% endfor %}
+            </optgroup>
+            <optgroup label="Suspicious">
+              {% for s in samples if s.startswith('S') %}<option value="{{ s }}">{{ s[:-4]|replace('_', ' ') }}</option>{% endfor %}
+            </optgroup>
+          </select>
+        </label>
+        <p class="hint">These synthetic emails are delivered to the fictitious <code>uni-example.edu</code>.
+          Set it as a trusted domain below for the same results as the evaluation.</p>
+      </div>
+      {% endif %}
+
+      <details class="settings">
+        <summary>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          Analysis settings <span class="muted">(optional)</span>
+        </summary>
+        <div class="settings-grid">
+          <label class="field">
+            <span class="field-label">Trusted domains</span>
+            <input type="text" name="trusted_domains" placeholder="uni-example.edu">
+            <small>Your mail infrastructure. Blank = inferred from the top Received header.</small>
+          </label>
+          <label class="field">
+            <span class="field-label">Trusted authserv-ids</span>
+            <input type="text" name="trusted_authserv_ids" placeholder="mx.google.com">
+            <small>Blank = auto (receiving server's own ID).</small>
+          </label>
+          <label class="field">
+            <span class="field-label">Extra protected domains</span>
+            <input type="text" name="protected_domains" placeholder="mybank.com, myorg.org">
+            <small>Checked for look-alikes alongside common brands.</small>
+          </label>
+          <label class="field">
+            <span class="field-label">Scoring approach</span>
+            <select name="scoring_approach">
+              {% for a in approaches %}
+              <option value="{{ a }}" {% if a == default_approach %}selected{% endif %}>{{ a }}{% if a == default_approach %} (default){% endif %}</option>
+              {% endfor %}
+            </select>
+            <small>Default selected on the tuning split of the evaluation.</small>
+          </label>
+        </div>
+        <label class="check">
+          <input type="checkbox" name="dns_lookups">
+          <span>Look up current SPF / DMARC records in DNS <small class="muted">(sends queries to your resolver)</small></span>
+        </label>
+      </details>
+
+      <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+        <span class="btn-label">Analyse email</span>
+        <span class="spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+  </section>
+
+  <aside class="side">
+    <section class="card card-soft">
+      <h2 class="side-title">What gets checked</h2>
+      <ul class="checklist">
+        <li><span class="ci ci-route"></span><div><b>Delivery route</b><small>Hops, delays, forged or impossible timestamps</small></div></li>
+        <li><span class="ci ci-auth"></span><div><b>SPF · DKIM · DMARC · ARC</b><small>Only results from trusted servers count</small></div></li>
+        <li><span class="ci ci-sender"></span><div><b>Sender identity</b><small>Reply-To, Return-Path, display-name tricks</small></div></li>
+        <li><span class="ci ci-domain"></span><div><b>Look-alike domains</b><small>paypa1.com, Cyrillic homographs, typosquats</small></div></li>
+        <li><span class="ci ci-header"></span><div><b>Header integrity</b><small>Missing, duplicate, malformed fields</small></div></li>
+      </ul>
+    </section>
+    <section class="card card-soft">
+      <h2 class="side-title">Evidence handling</h2>
+      <p class="small">Every submission becomes a case. The original bytes are stored read-only with
+        their SHA-256 hash, and the hash is re-verified before every report.</p>
+    </section>
+  </aside>
+</div>
+{% endblock %}

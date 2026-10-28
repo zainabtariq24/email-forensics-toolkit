@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% block title %}{{ a.metadata.case_id }} · {{ tool_name }}{% endblock %}
+{% macro addrs(list) -%}
+  {%- for x in list %}{% if x.display_name %}"{{ x.display_name }}" {% endif %}&lt;{{ x.address }}&gt;{% if not loop.last %}, {% endif %}{% else %}—{% endfor -%}
+{%- endmacro %}
+{% macro status_icon(status) -%}
+  {%- if status == 'pass' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+  {%- elif status == 'fail' -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  {%- else -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>{%- endif -%}
+{%- endmacro %}
+{% block content %}
+{% set r = a.risk %}
+{% set auth = a.authentication %}
+{% set scored = a.findings|rejectattr('severity', 'equalto', 'info')|list %}
+{% if r.thresholds %}{% set pct = [r.score / (r.thresholds[1] * 1.5), 1]|min %}{% else %}{% set pct = r.score / 3 %}{% endif %}
+{% set circ = 301.6 %}
+
+<section class="verdict verdict-{{ r.category }}">
+  <div class="verdict-gauge">
+    <svg viewBox="0 0 120 120" class="gauge" role="img" aria-label="Risk {{ r.category }}">
+      <circle cx="60" cy="60" r="48" class="gauge-track"/>
+      <circle cx="60" cy="60" r="48" class="gauge-value"
+              stroke-dasharray="{{ '%.1f' % (circ * pct) }} {{ circ }}" transform="rotate(-90 60 60)"/>
+      <text x="60" y="58" class="gauge-score">{{ '%g' % r.score }}</text>
+      <text x="60" y="76" class="gauge-unit">score</text>
+    </svg>
+  </div>
+  <div class="verdict-body">
+    <div class="verdict-meta">
+      <span class="mono">{{ a.metadata.case_id }}</span>
+      <span>·</span>
+      <span>{{ a.metadata.analysis_time_utc[:19]|replace('T', ' ') }} UTC</span>
+    </div>
+    <div class="verdict-label">
+      <span class="risk-badge">{{ r.category }} risk</span>
+      <span class="muted small">{{ r.approach }}{% if r.thresholds %} · medium ≥ {{ '%g' % r.thresholds[0] }}, high ≥ {{ '%g' % r.thresholds[1] }}{% endif %}</span>
+    </div>
+    <h1 class="verdict-subject">{{ a.parsed.subject or "(no subject)" }}</h1>
+    <p class="verdict-from">From {{ addrs(a.parsed.from_addrs) }}</p>
+    <div class="chips">
+      {% for key in ['spf', 'dkim', 'dmarc'] %}{% set m = auth[key] %}
+      <span class="chip chip-{{ m.status }}">{{ status_icon(m.status) }}{{ key|upper }} <b>{{ m.status }}</b></span>
+      {% endfor %}
+      <span class="chip chip-neutral">{{ scored|length }} indicator{{ '' if scored|length == 1 else 's' }}</span>
+      <span class="chip chip-neutral">{{ a.route.hops|length }} hop{{ '' if a.route.hops|length == 1 else 's' }}</span>
+      {% if a.route.origin_ip %}<span class="chip chip-neutral mono">origin {{ a.route.origin_ip }}</span>{% endif %}
+    </div>
+  </div>
+  <div class="verdict-actions">
+    <a class="btn btn-primary" href="{{ url_for('report', case_id=a.metadata.case_id) }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF report</a>
+    <a class="btn btn-secondary" href="{{ url_for('export_json', case_id=a.metadata.case_id) }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H6a2 2 0 00-2 2v4l-2 2 2 2v4a2 2 0 002 2h2M16 4h2a2 2 0 012 2v4l2 2-2 2v4a2 2 0 01-2 2h-2"/></svg>JSON</a>
+  </div>
+</section>
+
+<nav class="subnav" aria-label="Sections">
+  <a href="#findings">Findings <span class="count">{{ scored|length }}</span></a>
+  <a href="#authentication">Authentication</a>
+  <a href="#route">Route</a>
+  <a href="#headers">Headers</a>
+  <a href="#evidence">Evidence</a>
+  <a href="#limitations">Limitations</a>
+</nav>
+
+<div class="layout-2 layout-result">
+  <div class="main-col">
+
+    <section class="card" id="findings">
+      <div class="card-head">
+        <h2>Findings</h2>
+        <span class="muted small">Indicators support or weaken a hypothesis — none is proof on its own.</span>
+      </div>
+      {% for f in a.findings %}
+      <details class="finding finding-{{ f.severity }}" {% if f.severity in ['high', 'medium'] %}open{% endif %}>
+        <summary>
+          <span class="sev sev-{{ f.severity }}">{{ f.severity }}</span>
+          <span class="finding-title">{{ f.title }}</span>
+          <span class="rule-id">{{ f.rule_id }}</span>
+        </summary>
+        <div class="finding-body">
+          <ul class="evidence-list">{% for e in f.evidence %}<li>{{ e }}</li>{% endfor %}</ul>
+          <div class="finding-grid">
+            <div><h4>Why it matters</h4><p>{{ f.why_it_matters }}</p></div>
+            <div><h4>Limitations</h4><p>{{ f.limitations }}</p></div>
+          </div>
+          {% if f.mitigated_by %}<p class="mitigation"><b>Mitigating context:</b> {{ f.mitigated_by|join('; ') }}</p>{% endif %}
+        </div>
+      </details>
+      {% else %}
+      <div class="empty">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <div><b>No suspicious indicators found.</b><p class="muted small">This does not prove the message is legitimate — e.g. a compromised account passes every header check.</p></div>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="card" id="authentication">
+      <div class="card-head"><h2>Authentication</h2>
+        <span class="muted small">As recorded by trusted server{{ 's' if auth.trusted_authserv_ids|length > 1 }}: <span class="mono">{{ auth.trusted_authserv_ids|join(', ') or 'none' }}</span></span></div>
+      <div class="auth-grid">
+        {% for key in ['spf', 'dkim', 'dmarc'] %}{% set m = auth[key] %}
+        <div class="auth-card auth-{{ m.status }}">
+          <div class="auth-top">
+            <span class="auth-name">{{ key|upper }}</span>
+            <span class="auth-status">{{ status_icon(m.status) }}{{ m.status }}</span>
+          </div>
+          <div class="auth-domain mono">{{ m.domain or '—' }}</div>
+          <p>{{ m.explanation }}</p>
+          {% if m.raw_result and m.raw_result != m.status %}<span class="muted small">reported: {{ m.raw_result }}</span>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% set al = auth.alignment %}
+      <div class="alignment">
+        <div class="align-item"><span class="muted small">Visible From</span><b class="mono">{{ al.from_domain or '—' }}</b></div>
+        <div class="align-item {{ 'ok' if al.spf_aligned else 'bad' }}"><span class="muted small">SPF domain · {{ 'aligned' if al.spf_aligned else 'not aligned' }}</span><b class="mono">{{ al.spf_domain or '—' }}</b></div>
+        <div class="align-item {{ 'ok' if al.dkim_aligned else 'bad' }}"><span class="muted small">DKIM domains · {{ 'aligned' if al.dkim_aligned else 'not aligned' }}</span><b class="mono">{{ al.dkim_domains|join(', ') or '—' }}</b></div>
+      </div>
+      {% if auth.arc and auth.arc.status != 'missing' %}<p class="small muted">ARC: {{ auth.arc.status }}{% if auth.arc.details %} · first intermediary saw {% for k, v in auth.arc.details.items() %}{{ k[9:] }}={{ v }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</p>{% endif %}
+      {% if auth.untrusted_result_count %}<p class="small warn-text">{{ auth.untrusted_result_count }} result(s) from untrusted Authentication-Results headers were ignored.</p>{% endif %}
+    </section>
+
+    <section class="card" id="route">
+      <div class="card-head"><h2>Delivery route</h2>
+        <span class="muted small">Earliest hop first · trusted infrastructure: <span class="mono">{{ a.route.trusted_domains|join(', ') or 'none' }}</span></span></div>
+      {% if a.route.hops %}
+      <ol class="timeline">
+        <li class="tl-origin">
+          <span class="tl-dot"></span>
+          <div class="tl-body"><b>Origin</b>
+            <span class="muted small">{% if a.route.origin_ip %}IP seen by trusted server: <span class="mono">{{ a.route.origin_ip }}</span>{% if a.route.origin_ip_scope %} ({{ a.route.origin_ip_scope }}){% endif %}{% else %}not determined{% endif %}</span></div>
+        </li>
+        {% for h in a.route.hops %}
+        <li class="{{ 'tl-trusted' if h.trusted else 'tl-claimed' }}">
+          <span class="tl-dot"></span>
+          <div class="tl-body">
+            <div class="tl-row">
+              <span class="tl-step">Hop {{ h.delivery_index }}</span>
+              <span class="trust {{ 'trust-yes' if h.trusted else 'trust-no' }}">{{ 'trusted' if h.trusted else 'claimed' }}</span>
+              {% if h.delay_seconds is not none %}<span class="delay {{ 'delay-bad' if h.delay_seconds < -300 }}">{{ '%+.0f' % h.delay_seconds }} s</span>{% endif %}
+            </div>
+            <div class="tl-hosts">
+              <span class="mono">{{ h.from_helo or h.from_rdns or 'unknown' }}</span>
+              {% if h.from_ip %}<span class="ip mono">{{ h.from_ip }}</span>{% endif %}
+              <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M14 7l5 5-5 5"/></svg>
+              <span class="mono">{{ h.by_host or '—' }}</span>
+            </div>
+            <div class="muted small">{{ (h.timestamp or h.timestamp_raw or 'no timestamp')|replace('T', ' ') }}{% if h.protocol %} · {{ h.protocol }}{% endif %}</div>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+      <p class="small muted">"Claimed" hops were written by servers outside the trust boundary and may be forged.</p>
+      {% endif %}
+      {% for an in a.route.anomalies %}
+      <div class="note note-{{ an.severity }}"><span class="sev sev-{{ an.severity }}">{{ an.severity }}</span> <b>{{ an.kind }}</b> — {{ an.detail }}</div>
+      {% endfor %}
+    </section>
+
+    <section class="card" id="headers">
+      <div class="card-head"><h2>Extracted headers</h2></div>
+      <dl class="kv">
+        <dt>From</dt><dd>{{ addrs(a.parsed.from_addrs) }}</dd>
+        <dt>Reply-To</dt><dd>{{ addrs(a.parsed.reply_to) }}</dd>
+        <dt>Return-Path</dt><dd>{% if a.parsed.return_path_null %}&lt;&gt; (null sender){% elif a.parsed.return_path %}&lt;{{ a.parsed.return_path.address }}&gt;{% else %}—{% endif %}</dd>
+        <dt>To</dt><dd>{{ addrs(a.parsed.to_addrs) }}</dd>
+        {% if a.parsed.cc_addrs %}<dt>Cc</dt><dd>{{ addrs(a.parsed.cc_addrs) }}</dd>{% endif %}
+        <dt>Date</dt><dd>{{ a.parsed.date_raw or '—' }}</dd>
+        <dt>Message-ID</dt><dd class="mono">{{ a.parsed.message_id or '—' }}</dd>
+        <dt>IP addresses</dt><dd class="mono">{% for i in a.parsed.ips %}{{ i.ip }} <span class="muted">({{ i.scope }})</span>{% if not loop.last %}, {% endif %}{% else %}—{% endfor %}</dd>
+      </dl>
+      {% if a.parsed.issues %}
+      <h3 class="h3">Header issues</h3>
+      <ul class="issues">{% for i in a.parsed.issues %}<li><span class="sev sev-{{ i.severity }}">{{ i.severity }}</span> <b>{{ i.field }}</b> <span class="muted">{{ i.kind }}</span> — {{ i.detail }}</li>{% endfor %}</ul>
+      {% endif %}
+      <details class="raw-wrap"><summary>All header fields ({{ a.parsed.headers|length }})</summary>
+        <pre class="raw">{% for n, v in a.parsed.headers %}<span class="hn">{{ n }}:</span> {{ v }}
+{% endfor %}</pre>
+      </details>
+    </section>
+
+    <section class="card" id="limitations">
+      <div class="card-head"><h2>Limitations &amp; next steps</h2></div>
+      <div class="finding-grid">
+        <div><h4>Limitations</h4><ul class="plain">{% for l in a.limitations %}<li>{{ l }}</li>{% endfor %}</ul></div>
+        <div><h4>Recommended next steps</h4><ol class="plain">{% for s in a.next_steps %}<li>{{ s }}</li>{% endfor %}</ol></div>
+      </div>
+    </section>
+  </div>
+
+  <aside class="side side-sticky">
+    <section class="card" id="evidence">
+      <h2 class="side-title">Evidence</h2>
+      <div class="integrity {{ 'integrity-ok' if integrity.intact else 'integrity-bad' }}">
+        {% if integrity.intact %}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <div><b>Integrity intact</b><small>Stored original matches the intake hash</small></div>
+        {% else %}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M12 8v5M12 16h.01"/></svg>
+        <div><b>HASH MISMATCH</b><small>Current: {{ integrity.current_sha256 }}</small></div>
+        {% endif %}
+      </div>
+      <dl class="kv kv-stack">
+        <dt>SHA-256</dt>
+        <dd><span class="hash mono" id="sha">{{ manifest.sha256 }}</span>
+          <button type="button" class="copy-btn" data-copy="sha">Copy</button></dd>
+        <dt>Source</dt><dd>{{ manifest.original_filename }}</dd>
+        <dt>Input</dt><dd>{{ manifest.input_method }} · {{ manifest.size_bytes }} bytes</dd>
+        <dt>Received</dt><dd>{{ manifest.received_at_utc[:19]|replace('T', ' ') }} UTC</dd>
+        <dt>Tool</dt><dd>v{{ manifest.tool_version }}</dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2 class="side-title">Score breakdown</h2>
+      {% if r.contributions %}
+      <ul class="contrib">
+        {% for c in r.contributions %}
+        <li><span class="sev sev-{{ c.severity }}">+{{ '%g' % c.points }}</span>
+          <div><b>{{ c.title }}</b><small>{{ c.explanation }}</small></div></li>
+        {% endfor %}
+      </ul>
+      {% else %}<p class="small muted">No scored findings.</p>{% endif %}
+      {% for n in r.confidence_notes %}<p class="note note-info small">{{ n }}</p>{% endfor %}
+      <p class="small muted disclaimer">{{ r.disclaimer }}</p>
+    </section>
+  </aside>
+</div>
+{% endblock %}
