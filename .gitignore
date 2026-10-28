@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments
+.venv/
+.venv*/
+venv/
+
+# Analyses created at runtime (contain uploaded emails)
+cases/
+
+# Course submission files and Office lock files
+*.docx
+~$*
+VIVA_GUIDE.md
+
+# OS / editor
+.DS_Store
+__MACOSX/
+.vscode/
+.idea/

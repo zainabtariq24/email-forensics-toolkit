@@ -1,0 +1,6 @@
+Flask>=3.0,<4
+# ReportLab 4.3+ requires Python 3.10; this range also works on Python 3.9.
+reportlab>=4.0,<4.3
+dnspython>=2.4
+idna>=3.4
+pytest>=7.4
